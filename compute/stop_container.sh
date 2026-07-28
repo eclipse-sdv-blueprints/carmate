@@ -1,3 +1,12 @@
+# *******************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut
+#
+# Authors:
+#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+#
+# SPDX-License-Identifier: APACHE-2.0
+# *******************************************************************************
+
 #!/bin/bash
 
 echo "🧹 FULL MQTT CLEANUP (NO RESTART LOOP)"

@@ -1,3 +1,12 @@
+# *******************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut
+#
+# Authors:
+#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+#
+# SPDX-License-Identifier: APACHE-2.0
+# *******************************************************************************
+
 import asyncio
 import queue
 import paho.mqtt.client as mqtt

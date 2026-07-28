@@ -1,2 +1,0 @@
-Make dockerfile for camte_agents and carmate io
-Test with carla
