@@ -1,6 +1,23 @@
 ﻿# SDV Blueprint - CarMate
 
-CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures. It enhances driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces.
+CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures. It enhances driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces
+
+## Attribution & Evolution
+
+CarMate is built upon and evolved from the original hackathon project **[ArBytesMoral](https://github.com/Eclipse-SDV-Hackathon-Chapter-Three/ArBytesMoral/tree/main)**, developed during the Eclipse SDV Hackathon Chapter Three. We gratefully acknowledge and attribute the foundational contributions of the original team, including:
+
+* **In-Vehicle AI Companion Concept:** The original vision for an interactive, driver-focused AI companion designed to enhance well-being, mitigate driver fatigue, and manage in-cabin interactions.
+* **Initial Hardware & Simulation Pipeline:** The end-to-end telemetry architecture connecting MCU sensor hardware, CARLA simulator environments, and Kuksa-based VSS signal processing.
+* **Core Agent Interaction Flow:** The basic architecture for integrating Speech-to-Text (STT), Text-to-Speech (TTS), and LLM-driven conversational logic with vehicle signal loops.
+
+Building upon that foundational work, this project introduces the following major updates and architectural changes:
+
+* **Containerization Shift:** Migrated container orchestration and deployment from Podman to **Docker**.
+* **Language Migration:** Rebuilt the core codebase transition from Rust to **Python** for improved extensibility and ecosystem integration.
+* **SDV Runtime Upgrade:** Integrated the **Eclipse AutoWRX SDV runtime** as a primary middleware layer alongside the Kuksa Databroker.
+* **Flexible LLM Support:** Added support for running local LLMs (via Ollama) alongside cloud-based models.
+* **Enhanced Visuals:** Completely redesigned and updated the cluster display and Web UI.
+* **Mock Data Fallback:** Added integrated mock data generation capabilities so the blueprint can run and be evaluated even when the CARLA simulator is unavailable.
 
 ## Getting Started
 
