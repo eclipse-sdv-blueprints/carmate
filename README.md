@@ -1,27 +1,21 @@
-﻿# SDV Blueprint - CarMate
+---
+sidebar_position: 1
+title: CarMate
+---
 
-CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures. It enhances driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces
+# SDV Blueprint — CarMate
 
-## Attribution & Evolution
+CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures. It enhances driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces.
 
-CarMate is built upon and evolved from the original hackathon project **[ArBytesMoral](https://github.com/Eclipse-SDV-Hackathon-Chapter-Three/ArBytesMoral/tree/main)**, developed during the Eclipse SDV Hackathon Chapter Three. We gratefully acknowledge and attribute the foundational contributions of the original team, including:
-
-* **In-Vehicle AI Companion Concept:** The original vision for an interactive, driver-focused AI companion designed to enhance well-being, mitigate driver fatigue, and manage in-cabin interactions.
-* **Initial Hardware & Simulation Pipeline:** The end-to-end telemetry architecture connecting MCU sensor hardware, CARLA simulator environments, and Kuksa-based VSS signal processing.
-* **Core Agent Interaction Flow:** The basic architecture for integrating Speech-to-Text (STT), Text-to-Speech (TTS), and LLM-driven conversational logic with vehicle signal loops.
-
-Building upon that foundational work, this project introduces the following major updates and architectural changes:
-
-* **Containerization Shift:** Migrated container orchestration and deployment from Podman to **Docker**.
-* **Language Migration:** Rebuilt the core codebase transition from Rust to **Python** for improved extensibility and ecosystem integration.
-* **SDV Runtime Upgrade:** Integrated the **Eclipse AutoWRX SDV runtime** as a primary middleware layer alongside the Kuksa Databroker.
-* **Flexible LLM Support:** Added support for running local LLMs (via Ollama) alongside cloud-based models.
-* **Enhanced Visuals:** Completely redesigned and updated the cluster display and Web UI.
-* **Mock Data Fallback:** Added integrated mock data generation capabilities so the blueprint can run and be evaluated even when the CARLA simulator is unavailable.
-
-## Getting Started
-
-For setup and deployment instructions, start with the [CarMate Getting Started Guide](Manual.md).
+|                          |                                                                                                                                                                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Short Summary**        | AI-powered in-vehicle companion for SDV architectures, combining real-time vehicle telemetry, conversational AI, and speech interfaces                                                                                               |
+| **What is in the showcase** | Real-time vehicle telemetry via VSS-aligned signals, Speech-to-Text (STT) and Text-to-Speech (TTS), LLM-driven conversational AI, cluster display and Web UI, MCU hardware integration (optional)                                 |
+| **SDV Projects Involved** | [Eclipse Kuksa](https://eclipse-kuksa.github.io/kuksa-website/), [Eclipse Zenoh](https://zenoh.io/), [Eclipse AutoWRX](https://github.com/eclipse-autowrx)                                                                        |
+| **Other Technologies**   | [CARLA Simulator](https://carla.org/), [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/), [Eclipse Mosquitto](https://mosquitto.org/), [Docker](https://www.docker.com/), [Ollama](https://ollama.com/)         |
+| **Target Hardware**      | Linux compute node (Docker host), Windows machine (CARLA simulator), Azure IoT Dev Kit / MCU node (optional)                                                                                                                        |
+| **Source Repository**    | [chheis/carmate](https://github.com/chheis/carmate)                                                                                                                                                                                 |
+| **Architecture Overview** | ![CarMate technical architecture](img/tech_arch.png)                                                                                                                                                                               |
 
 ## Goal
 
@@ -32,7 +26,7 @@ CarMate integrates real-time vehicle data, AI-driven conversational interaction,
 The blueprint connects:
 
 - In-vehicle data sources, including MCU sensors, simulation data from CARLA, and vehicle signals
-- Vehicle middleware and orchestration components, including VSS-based data models, MQTT providers, Eclipse Kuksa Databroker, and digital.auto
+- Vehicle middleware and orchestration components, including VSS-based data models, MQTT providers, Eclipse Kuksa Databroker, and Eclipse AutoWRX
 - AI interaction components, including speech processing, conversational AI, and LLM integration
 - User interface and visualization components, including cluster display and Web UI
 
@@ -60,24 +54,54 @@ Example use cases include:
 
 The CarMate blueprint is organized across three connected nodes:
 
-- MCU Node: runs the ThreadX-based sensor and LED drivers and publishes sensor data through MQTT.
-- Compute Node: hosts the containerized SDV services, including the MQTT broker, MQTT-Kuksa provider, CARLA-Kuksa provider, Kuksa Databroker, Vehicle Data Accessor, TTS/STT, CarMate agent, and local or external LLM backend.
-- HPC Node: runs the CARLA server and instrument app, connected through uProtocol and Zenoh.
+- **MCU Node:** Runs the ThreadX-based sensor firmware and publishes sensor data via MQTT over Wi-Fi.
+- **Compute Node:** Hosts the containerized SDV services, including the MQTT broker, MQTT-Kuksa provider, CARLA-Kuksa provider, Kuksa Databroker, Vehicle Data Accessor, TTS/STT, CarMate agent, and local or external LLM backend.
+- **HPC Node:** Runs the CARLA server and instrument app, connected through uProtocol and Zenoh.
 
 Vehicle and simulation data flow from the MCU node and CARLA environment into the Kuksa Databroker as VSS-aligned signals. CarMate reads this vehicle context through the Vehicle Data Accessor, combines it with speech and LLM interaction, and returns feedback to the driver-facing UI, instrument app, or selected vehicle functions.
 
-## Used Technologies and Tools
+## Technologies and Tools
 
 This blueprint builds upon the following open-source projects and technologies:
 
-- Eclipse Kuksa: https://eclipse-kuksa.github.io/kuksa-website/
-- Eclipse Mosquitto: https://mosquitto.org/
-- Eclipse Zenoh: https://zenoh.io/
-- CARLA Simulator: https://carla.org/
-- COVESA VSS: https://covesa.github.io/vehicle_signal_specification/
-- Eclipse AutoWRX: https://github.com/eclipse-autowrx
-- Docker: https://www.docker.com/
-- Ollama: https://ollama.com/
+- [Eclipse Kuksa](https://eclipse-kuksa.github.io/kuksa-website/) — Vehicle signal brokering and VSS data store
+- [Eclipse Mosquitto](https://mosquitto.org/) — MQTT message broker
+- [Eclipse Zenoh](https://zenoh.io/) — uProtocol transport layer
+- [Eclipse AutoWRX](https://github.com/eclipse-autowrx) — SDV runtime middleware
+- [CARLA Simulator](https://carla.org/) — Autonomous driving simulation
+- [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/) — Vehicle Signal Specification
+- [Docker](https://www.docker.com/) — Container orchestration
+- [Ollama](https://ollama.com/) — Local LLM inference
+
+## Documentation
+
+Full documentation for the CarMate blueprint is available in the [`docs/`](docs/) folder and on the [Eclipse SDV Blueprints website](https://sdv-blueprints.eclipse.dev):
+
+| Document | Description |
+| --- | --- |
+| [Introduction](docs/introduction.md) | Blueprint overview, use cases, and SDV technology diagram |
+| [Architecture](docs/architecture.md) | Node breakdown, data flow, component interaction, and sequence diagrams |
+| [Getting Started](docs/getting-started.md) | Prerequisites, quick start, step-by-step setup, troubleshooting |
+| [Components](docs/components.md) | Per-service reference for the full Docker Compose stack |
+
+For the setup and deployment quick reference, see [Manual.md](Manual.md).
+
+## Attribution & Evolution
+
+CarMate is built upon and evolved from the original hackathon project **[ArBytesMoral](https://github.com/Eclipse-SDV-Hackathon-Chapter-Three/ArBytesMoral/tree/main)**, developed during the Eclipse SDV Hackathon Chapter Three. We gratefully acknowledge and attribute the foundational contributions of the original team, including:
+
+* **In-Vehicle AI Companion Concept:** The original vision for an interactive, driver-focused AI companion designed to enhance well-being, mitigate driver fatigue, and manage in-cabin interactions.
+* **Initial Hardware & Simulation Pipeline:** The end-to-end telemetry architecture connecting MCU sensor hardware, CARLA simulator environments, and Kuksa-based VSS signal processing.
+* **Core Agent Interaction Flow:** The basic architecture for integrating Speech-to-Text (STT), Text-to-Speech (TTS), and LLM-driven conversational logic with vehicle signal loops.
+
+Building upon that foundational work, this project introduces the following major updates and architectural changes:
+
+* **Containerization Shift:** Migrated container orchestration and deployment from Podman to **Docker**.
+* **Language Migration:** Rebuilt the core codebase from Rust to **Python** for improved extensibility and ecosystem integration.
+* **SDV Runtime Upgrade:** Integrated the **Eclipse AutoWRX SDV runtime** as a primary middleware layer alongside the Kuksa Databroker.
+* **Flexible LLM Support:** Added support for running local LLMs (via Ollama) alongside cloud-based models.
+* **Enhanced Visuals:** Completely redesigned and updated the cluster display and Web UI.
+* **Mock Data Fallback:** Added integrated mock data generation capabilities so the blueprint can run and be evaluated even when the CARLA simulator is unavailable.
 
 ## Future Work
 
@@ -97,22 +121,16 @@ Expand beyond basic signals to integrate with ADAS and infotainment systems, suc
 
 Introduce driver profiles with memory and preferences, such as language, tone, and favorite settings. CarMate could recognize different drivers and adapt behavior, making the experience more personalized and consistent across trips.
 
-## Acknowledgement
+## Contributing
 
-This blueprint is built upon and further developed from the [ArBytesMoral](https://github.com/Eclipse-SDV-Hackathon-Chapter-Three/ArBytesMoral) project, which was created during the Eclipse SDV Hackathon Chapter Three.
-
-We sincerely thank all contributors and team members of ArBytesMoral for their foundational work that made this blueprint possible.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) and ensure compliance with the
+[Eclipse Contributor Agreement (ECA)](https://www.eclipse.org/legal/ECA.php).
 
 ## License
 
 Licensed under the Apache License 2.0.
 
 SPDX-License-Identifier: Apache-2.0
-
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) and ensure compliance with the
-[Eclipse Contributor Agreement (ECA)](https://www.eclipse.org/legal/ECA.php).
 
 ## Notice
 
