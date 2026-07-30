@@ -171,8 +171,13 @@ Open `/compute/carla_provider/Dockerfile` and locate the final line:
 # Default: Runs in MOCK mode
 CMD ["python", "carla_mqtt_bridge.py", "--nocarla"]
 ```
+remove the "--nocarla" flag if you want to use the real carla simulator
 
-and then run the following command, If you dont want to use the real carla server then skip the above part and run the folllowing command:
+```dockerfile
+CMD ["python", "carla_provider.py"]
+```
+
+and then run the following command from the compute direcotry of the project.
 
 ```bash
 cd ~/compute

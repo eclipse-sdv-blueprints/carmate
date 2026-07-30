@@ -1,17 +1,18 @@
-# *******************************************************************************
-# Copyright (c) 2026 Ferdinand Steinbeis Institut
+# ********************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut AIoT lab[ and others] 
 #
-# Authors:
-#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+# This program and the accompanying materials are made available under the 
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0.
 #
-# SPDX-License-Identifier: APACHE-2.0
-# *******************************************************************************
+# SPDX-License-Identifier: EPL-2.0 
+# ********************************************************************************
 
 
 services:
     
   sdv_runtime:
-    image: ghcr.io/eclipse-autowrx/sdv-runtime:latest
+    image: ghcr.io/eclipse-autowrx/sdv-runtime:main-63cb5c3
     container_name: sdv_runtime
     network_mode: host
     environment:
@@ -28,12 +29,15 @@ services:
     restart: unless-stopped
 
   zenoh:
-    image: eclipse/zenoh
+    image: eclipse/zenoh:1.9.0-10-gfe7a78ebc
     container_name: zenoh
     network_mode: host
     depends_on:
       - mqtt
     restart: unless-stopped
+    ports:
+      - "7447:7447"
+      - "7446:7446/udp"
 
   mqtt_provider:
     build:

@@ -1,11 +1,12 @@
-# *******************************************************************************
-# Copyright (c) 2026 Ferdinand Steinbeis Institut
+# ********************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut AIoT lab[ and others] 
 #
-# Authors:
-#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+# This program and the accompanying materials are made available under the 
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0.
 #
-# SPDX-License-Identifier: APACHE-2.0
-# *******************************************************************************
+# SPDX-License-Identifier: EPL-2.0 
+# ********************************************************************************
 
 import argparse
 import carla
@@ -14,21 +15,35 @@ import math
 import random
 import paho.mqtt.client as mqtt
 import json
+import os
 
 # -------------------------------
-# Configuration
+# Load External Configuration
 # -------------------------------
-CARLA_HOST = '192.168.43.249'
-CARLA_PORT = 2000
-TM_PORT = 8000
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'config.json')
 
-MQTT_BROKER = 'localhost'
-MQTT_PORT = 1883
-MQTT_TOPIC_SPEED = 'carla/vehicle/speed'
-MQTT_TOPIC_LAT = 'carla/vehicle/lat'
-MQTT_TOPIC_LON = 'carla/vehicle/lon'
-MQTT_TOPIC_ALT = 'carla/vehicle/alt'
-MQTT_TOPIC_WETNESS = 'carla/vehicle/wetness'
+try:
+    with open(CONFIG_PATH, 'r') as f:
+        config = json.load(f)
+except FileNotFoundError:
+    print(f"Error: Configuration file not found at {CONFIG_PATH}")
+    exit(1)
+
+# CARLA Configuration (Supports ENV overrides)
+CARLA_HOST = os.getenv('CARLA_HOST', config['carla']['host'])
+CARLA_PORT = int(os.getenv('CARLA_PORT', config['carla']['port']))
+TM_PORT = int(os.getenv('TM_PORT', config['carla']['tm_port']))
+
+# MQTT Configuration (Supports ENV overrides)
+MQTT_BROKER = os.getenv('MQTT_BROKER', config['mqtt']['broker'])
+MQTT_PORT = int(os.getenv('MQTT_PORT', config['mqtt']['port']))
+
+# MQTT Topics
+MQTT_TOPIC_SPEED = config['mqtt']['topics']['speed']
+MQTT_TOPIC_LAT = config['mqtt']['topics']['lat']
+MQTT_TOPIC_LON = config['mqtt']['topics']['lon']
+MQTT_TOPIC_ALT = config['mqtt']['topics']['alt']
+MQTT_TOPIC_WETNESS = config['mqtt']['topics']['wetness']
 
 # -------------------------------
 # Helper functions
@@ -76,7 +91,7 @@ if not args.nocarla:
 
     for attempt in range(1, max_retries + 1):
         try:
-            print(f"Connecting to CARLA (Attempt {attempt}/{max_retries})...")
+            print(f"Connecting to CARLA at {CARLA_HOST}:{CARLA_PORT} (Attempt {attempt}/{max_retries})...")
             client = carla.Client(CARLA_HOST, CARLA_PORT)
             client.set_timeout(10.0)
             world = client.get_world()

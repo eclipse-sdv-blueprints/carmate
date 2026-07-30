@@ -1,11 +1,12 @@
-# *******************************************************************************
-# Copyright (c) 2026 Ferdinand Steinbeis Institut
+# ********************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut AIoT lab[ and others] 
 #
-# Authors:
-#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+# This program and the accompanying materials are made available under the 
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0.
 #
-# SPDX-License-Identifier: APACHE-2.0
-# *******************************************************************************
+# SPDX-License-Identifier: EPL-2.0 
+# ********************************************************************************
 
 FROM python:3.11-slim
 
@@ -18,10 +19,8 @@ RUN apt-get update && apt-get install -y \
     libtiff6 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install required Python dependencies 
-RUN pip install --no-cache-dir \
-    carla==0.9.16 \
-    paho-mqtt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy your script into the container workspace
 COPY carla_provider.py .

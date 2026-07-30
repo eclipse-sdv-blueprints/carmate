@@ -1,7 +1,6 @@
-<!-- SPDX-License-Identifier: Apache-2.0 -->
 # How to contribute
 
-First of all, thanks for considering to contribute to the Eclipse SDV CarMate Blueprint.
+First of all, thanks for considering to contribute to the Eclipse SDV Fleet Management Blueprint.
 We really appreciate the time and effort you want to spend helping to improve things around here.
 And help we can use :-)
 
@@ -60,26 +59,37 @@ Submit a pull request via the normal GitHub UI.
 Please make sure any file you newly create contains a proper license header like this:
 
 ```
-// Copyright (c) 2025 Eclipse Foundation and others.
-//
-// See the NOTICE file(s) distributed with this work for additional
-// information regarding copyright ownership.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-// SPDX-License-Identifier: Apache-2.0
+/**
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ */
 ```
-You should, of course, adapt this header to use the specific mechanism for comments pertaining to the type of file you create.
+You should, of course, adapt this header to use the specific mechanism for comments pertaining to the type of file you create, e.g. using something like
+
+```
+<!--
+ Copyright (c) 2023 Contributors to the Eclipse Foundation
+
+ See the NOTICE file(s) distributed with this work for additional
+ information regarding copyright ownership.
+
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License 2.0 which is available at
+ https://www.eclipse.org/legal/epl-2.0
+
+ SPDX-License-Identifier: EPL-2.0
+-->
+```
+
+when adding an XML file.
 
 There are cases where the type of document does not allow the inclusion of a license header, e.g. in a binary file like
 a PNG. In such a case, please create a separate text file of the same name as the binary artifact with a suffix of
@@ -88,22 +98,22 @@ a PNG. In such a case, please create a separate text file of the same name as th
 
 The content of the file should be:
 ```
-// SPDX-FileCopyrightText: 2025 Eclipse Foundation and others.
-//
-// See the NOTICE file(s) distributed with this work for additional
-// information regarding copyright ownership.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-// SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2023 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 ```

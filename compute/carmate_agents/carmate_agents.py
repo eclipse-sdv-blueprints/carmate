@@ -1,11 +1,12 @@
-# *******************************************************************************
-# Copyright (c) 2026 Ferdinand Steinbeis Institut
+# ********************************************************************************
+# Copyright (c) 2026 Ferdinand Steinbeis Institut AIoT lab[ and others] 
 #
-# Authors:
-#   - Raihan Soniwala <raihan.soniwala@ferdinand-steinbeis-institut.de>
+# This program and the accompanying materials are made available under the 
+# terms of the Eclipse Public License 2.0 which is available at
+# https://www.eclipse.org/legal/epl-2.0.
 #
-# SPDX-License-Identifier: APACHE-2.0
-# *******************************************************************************
+# SPDX-License-Identifier: EPL-2.0 
+# ********************************************************************************
 
 import asyncio
 import os

@@ -1,0 +1,5 @@
+paho-mqtt
+ollama
+openai
+google-genai
+groq

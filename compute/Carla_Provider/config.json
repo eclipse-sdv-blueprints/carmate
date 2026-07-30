@@ -1,0 +1,18 @@
+{
+  "carla": {
+    "host": "192.168.43.249",
+    "port": 2000,
+    "tm_port": 8000
+  },
+  "mqtt": {
+    "broker": "localhost",
+    "port": 1883,
+    "topics": {
+      "speed": "carla/vehicle/speed",
+      "lat": "carla/vehicle/lat",
+      "lon": "carla/vehicle/lon",
+      "alt": "carla/vehicle/alt",
+      "wetness": "carla/vehicle/wetness"
+    }
+  }
+}
