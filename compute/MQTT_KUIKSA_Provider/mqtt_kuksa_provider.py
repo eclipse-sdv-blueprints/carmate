@@ -13,34 +13,30 @@ import queue
 import paho.mqtt.client as mqtt
 from kuksa_client.grpc import VSSClient, Datapoint
 
+import os
+import json
+
+CONFIG_PATH = os.getenv("CONFIG_PATH", "config.json")
+
+def load_config(path):
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+config = load_config(CONFIG_PATH)
+
 # ---------------- CONFIG ----------------
-MQTT_BROKER = "localhost"
-MQTT_PORT = 1883
+MQTT_BROKER = config.get("mqtt", {}).get("broker", os.getenv("MQTT_BROKER", "localhost"))
+MQTT_PORT = config.get("mqtt", {}).get("port", int(os.getenv("MQTT_PORT", 1883)))
+MQTT_TOPICS_CARLA = config.get("mqtt", {}).get("topics", {}).get("carla", [])
+MQTT_TOPIC_COLOR = config.get("mqtt", {}).get("topics", {}).get("color", "compute/color")
 
-MQTT_TOPICS_CARLA = [
-    "carla/vehicle/speed",
-    "carla/vehicle/lat",
-    "carla/vehicle/lon",
-    "carla/vehicle/alt",
-    "carla/vehicle/wetness",
-    "mcu/temperature"
-]
+KUKSA_HOST = config.get("kuksa", {}).get("host", os.getenv("KUKSA_HOST", "localhost"))
+KUKSA_PORT = config.get("kuksa", {}).get("port", int(os.getenv("KUKSA_PORT", 55555)))
 
-MQTT_TOPIC_COLOR = "compute/color"
-
-KUKSA_HOST = "localhost"
-KUKSA_PORT = 55555
-
-MQTT_TO_KUKSA = {
-    "carla/vehicle/speed": "Vehicle.Speed",
-    "carla/vehicle/lat": "Vehicle.CurrentLocation.Latitude",
-    "carla/vehicle/lon": "Vehicle.CurrentLocation.Longitude",
-    "carla/vehicle/alt": "Vehicle.CurrentLocation.Altitude",
-    "carla/vehicle/wetness": "Vehicle.Exterior.Humidity",
-    "mcu/temperature": "Vehicle.Cabin.HVAC.AmbientAirTemperature"
-}
-
-SIGNAL_COLOR = "Vehicle.Cabin.Light.AmbientLight.Row1.DriverSide.Color"
+MQTT_TO_KUKSA = config.get("mappings", {})
+SIGNAL_COLOR = config.get("signals", {}).get("color", "Vehicle.Cabin.Light.AmbientLight.Row1.DriverSide.Color")
 
 # THREAD SAFE queue
 mqtt_queue = queue.Queue()

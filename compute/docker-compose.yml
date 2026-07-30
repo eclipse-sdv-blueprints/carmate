@@ -69,6 +69,8 @@ services:
   carmate_agents:
     build:
       context: ./carmate_agents
+    env_file:
+      - .env
     container_name: carmate_agents
     network_mode: host
     depends_on:

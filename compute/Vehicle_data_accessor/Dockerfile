@@ -19,7 +19,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Clone repo
-RUN git clone https://github.com/eclipse-uprotocol/up-transport-zenoh-python.git
+RUN git clone https://github.com/eclipse-uprotocol/up-transport-zenoh-python.git \
+    && cd up-transport-zenoh-python \
+    && git checkout c2bda41
 
 # Set working directory inside repo
 WORKDIR /app/up-transport-zenoh-python

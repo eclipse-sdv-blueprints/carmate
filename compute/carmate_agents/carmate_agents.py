@@ -27,7 +27,11 @@ from uprotocol.communication.upayload import UPayload
 from uprotocol.v1.uattributes_pb2 import UPayloadFormat
 from uprotocol.v1.umessage_pb2 import UMessage
 from uprotocol.v1.uri_pb2 import UUri
+import os
+from dotenv import load_dotenv
 
+
+load_dotenv()
 # =====================================================
 # HARDCODED AI CONFIGURATION (Change here)
 # =====================================================
@@ -36,10 +40,10 @@ AI_PROVIDER = "ollama"
 
 # Insert your API keys here directly if using cloud models
 API_KEYS = {
-    "openai": "YOUR_OPENAI_API_KEY",
-    "gemini": "YOUR_GEMINI_API_KEY",
-    "grok": "YOUR_XAI_API_KEY",
-    "groq": "YOUR_GROQ_API_KEY",
+"openai": os.getenv("OPENAI_API_KEY", ""),
+    "gemini": os.getenv("GEMINI_API_KEY", ""),
+    "grok": os.getenv("XAI_API_KEY", ""),
+    "groq": os.getenv("GROQ_API_KEY", ""),
 }
 
 MODEL_MAP = {

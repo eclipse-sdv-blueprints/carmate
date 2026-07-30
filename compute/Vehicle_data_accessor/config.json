@@ -1,0 +1,22 @@
+{
+  "mqtt": {
+    "broker": "localhost",
+    "port": 1883
+  },
+  "topics": [
+    "carla/vehicle/speed",
+    "carla/vehicle/lat",
+    "carla/vehicle/lon",
+    "carla/vehicle/alt",
+    "carla/vehicle/wetness",
+    "mcu/temperature"
+  ],
+  "topic_map": {
+    "carla/vehicle/speed": "0x1001",
+    "carla/vehicle/lat": "0x1002",
+    "carla/vehicle/lon": "0x1003",
+    "carla/vehicle/alt": "0x1004",
+    "carla/vehicle/wetness": "0x1005",
+    "mcu/temperature": "0x2001"
+  }
+}
