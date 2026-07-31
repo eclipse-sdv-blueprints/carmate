@@ -12,7 +12,7 @@ Eclipse Foundation.
 
 ## Copyright
 
-Copyright (c) 2026 Ferdinand Steinbeis Institut AIoT lab and others.
+Copyright (c) 2026 Ferdinand-Steinbeis-Institut.
 Copyright (c) 2025 Eclipse Foundation and contributors.
 
 All content is the property of the respective authors or their employers.
