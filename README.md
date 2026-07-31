@@ -1,4 +1,21 @@
-﻿# SDV Blueprint - CarMate
+﻿---
+sidebar_position: 1
+title: CarMate
+---
+
+# SDV Blueprint — CarMate
+
+CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures. It enhances driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces.
+
+|                          |                                                                                                                                                                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Short Summary**        | AI-powered in-vehicle companion for SDV architectures, combining real-time vehicle telemetry, conversational AI, and speech interfaces                                                                                               |
+| **What is in the showcase** | Real-time vehicle telemetry via VSS-aligned signals, Speech-to-Text (STT) and Text-to-Speech (TTS), LLM-driven conversational AI, cluster display and Web UI, MCU hardware integration (optional)                                 |
+| **SDV Projects Involved** | [Eclipse Kuksa](https://eclipse-kuksa.github.io/kuksa-website/), [Eclipse Zenoh](https://zenoh.io/), [Eclipse AutoWRX](https://github.com/eclipse-autowrx)                                                                        |
+| **Other Technologies**   | [CARLA Simulator](https://carla.org/), [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/), [Eclipse Mosquitto](https://mosquitto.org/), [Docker](https://www.docker.com/), [Ollama](https://ollama.com/)         |
+| **Target Hardware**      | Linux compute node (Docker host), Windows machine (CARLA simulator), Azure IoT Dev Kit / MCU node (optional)                                                                                                                        |
+| **Source Repository**    | [chheis/carmate](https://github.com/chheis/carmate)                                                                                                                                                                                 |
+| **Architecture Overview** | ![CarMate technical architecture](img/tech_arch.png)                                                                                                                                                                               |
 
 CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures designed to enhance driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces. The [AIoT Lab at the Ferdinand-Steinbeis-Institut](https://ferdinand-steinbeis-institut.de/aiotlab/) actively manages and updates this blueprint, and we welcome all forms of cooperation—ranging from open-source contributions and research partnerships to industry integrations.
 
