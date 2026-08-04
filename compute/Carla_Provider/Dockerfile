@@ -24,6 +24,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy your script into the container workspace
 COPY carla_provider.py .
+COPY config.json .
 
 # By using CMD instead of ENTRYPOINT, we can set a default behavior.
 # This defaults the container to run in MOCK mode out of the box:

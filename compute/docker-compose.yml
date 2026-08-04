@@ -24,6 +24,7 @@ services:
     container_name: mqtt
     depends_on:
       - sdv_runtime
+    network_mode: host
     volumes:
       - ./mosquitto/config:/mosquitto/config
     restart: unless-stopped
@@ -50,7 +51,7 @@ services:
     
   carla_provider:
     build:
-      context: ./carla_provider
+      context: ./Carla_Provider
     container_name: carla-provider
     network_mode: host
     depends_on:
