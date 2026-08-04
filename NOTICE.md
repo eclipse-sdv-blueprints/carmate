@@ -55,8 +55,6 @@ This blueprint utilizes third-party open-source projects including:
 * **Eclipse AutoWRX** (https://github.com/eclipse-autowrx)
 * **Ollama** (https://github.com/ollama/ollama)
 
-See [DEPENDENCIES](DEPENDENCIES) for detailed third-party licensing.
-
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently located
