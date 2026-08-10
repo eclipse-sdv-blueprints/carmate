@@ -28,7 +28,7 @@ Vehicle_data_accessor/
 
 This component acts as a translator and requires both an MQTT Broker and a Zenoh Router to function:
 
-* **MQTT Broker Endpoint:** `localhost:1883` (Source of raw vehicle telemetry)
+* **MQTT Broker Endpoint:** `localhost:1884` (Source of raw vehicle telemetry)
 * **Zenoh Router Endpoint:** `tcp/zenoh:7447` (Target bus for uProtocol publishing)
 
 ---

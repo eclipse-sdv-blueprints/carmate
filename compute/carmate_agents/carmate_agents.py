@@ -30,32 +30,50 @@ from uprotocol.communication.upayload import UPayload
 from uprotocol.v1.uattributes_pb2 import UPayloadFormat
 from uprotocol.v1.umessage_pb2 import UMessage
 from uprotocol.v1.uri_pb2 import UUri
-import os
 from dotenv import load_dotenv
 
 
 load_dotenv()
 # =====================================================
-# HARDCODED AI CONFIGURATION (Change here)
+# AI CONFIGURATION (Environment-Driven)
 # =====================================================
 # Options: "ollama", "openai", "gemini", "grok", "groq"
-AI_PROVIDER = "ollama"
+AI_PROVIDER = os.getenv("AI_PROVIDER", "ollama").strip().lower()
 
-# Insert your API keys here directly if using cloud models
+SUPPORTED_PROVIDERS = {"ollama", "openai", "gemini", "grok", "groq"}
+if AI_PROVIDER not in SUPPORTED_PROVIDERS:
+    raise ValueError(
+        f"Unsupported AI_PROVIDER '{AI_PROVIDER}'. Supported values: {sorted(SUPPORTED_PROVIDERS)}"
+    )
+
 API_KEYS = {
-"openai": os.getenv("OPENAI_API_KEY", ""),
+    "openai": os.getenv("OPENAI_API_KEY", ""),
     "gemini": os.getenv("GEMINI_API_KEY", ""),
     "grok": os.getenv("XAI_API_KEY", ""),
     "groq": os.getenv("GROQ_API_KEY", ""),
 }
 
 MODEL_MAP = {
-    "ollama": "phi3",
-    "openai": "gpt-4o-mini",
-    "gemini": "gemini-1.5-flash",
-    "grok": "grok-beta",
-    "groq": "llama-3.3-70b-versatile",
+    "ollama": os.getenv("OLLAMA_MODEL", "phi3"),
+    "openai": os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+    "gemini": os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
+    "grok": os.getenv("GROK_MODEL", "grok-beta"),
+    "groq": os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
 }
+
+
+def validate_provider_configuration(provider: str) -> None:
+    required_keys = {
+        "openai": "OPENAI_API_KEY",
+        "gemini": "GEMINI_API_KEY",
+        "grok": "XAI_API_KEY",
+        "groq": "GROQ_API_KEY",
+    }
+    key_name = required_keys.get(provider)
+    if key_name and not os.getenv(key_name):
+        raise ValueError(
+            f"Missing required environment variable {key_name} for AI_PROVIDER='{provider}'"
+        )
 
 
 # =====================================================
@@ -102,6 +120,8 @@ def get_vehicle_data(type: str) -> str:
 # UNIVERSAL LLM CLIENT ROUTER
 # =====================================================
 def run_llm_call(provider: str, prompt: str) -> str:
+    validate_provider_configuration(provider)
+
     system_prompt = f"""
 You are a friendly in-car AI assistant in a Software-Defined Vehicle.
 
@@ -138,14 +158,23 @@ Always end with a light question or invitation to continue the conversation.
     model = MODEL_MAP.get(provider)
 
     if provider == "ollama":
-        response = ollama.chat(
-            model=model,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt},
-            ],
-        )
-        return response["message"]["content"]
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+        ]
+        try:
+            response = ollama.chat(
+                model=model,
+                messages=messages,
+            )
+            return response["message"]["content"]
+        except Exception as e:
+            # Backward compatibility for Ollama builds without /api/chat.
+            if "404" in str(e) and "/api/chat" in str(e):
+                fallback_prompt = f"{system_prompt}\n\nUser: {prompt}\nAssistant:"
+                response = ollama.generate(model=model, prompt=fallback_prompt)
+                return response.get("response", "")
+            raise
 
     elif provider == "openai":
         client = OpenAI(api_key=API_KEYS["openai"])

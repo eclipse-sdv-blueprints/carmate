@@ -37,6 +37,9 @@ RUN git clone https://github.com/eclipse-uprotocol/up-transport-zenoh-python.git
 # Set working directory inside repo
 WORKDIR /app/up-transport-zenoh-python
 
+# Install repo dependencies (includes uprotocol packages)
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Copy your script into container
 COPY . /app/up-transport-zenoh-python
 

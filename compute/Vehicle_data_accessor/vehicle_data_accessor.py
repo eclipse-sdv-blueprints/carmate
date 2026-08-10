@@ -47,7 +47,7 @@ publisher = UPTransportZenoh.new(get_zenoh_default_config(), source)
 
 # ---------------- MQTT CONFIG ----------------
 MQTT_BROKER = config.get("mqtt", {}).get("broker", os.getenv("MQTT_BROKER", "localhost"))
-MQTT_PORT = config.get("mqtt", {}).get("port", int(os.getenv("MQTT_PORT", 1883)))
+MQTT_PORT = config.get("mqtt", {}).get("port", int(os.getenv("MQTT_PORT", 1884)))
 
 TOPICS = config.get("topics", [
     "carla/vehicle/speed",

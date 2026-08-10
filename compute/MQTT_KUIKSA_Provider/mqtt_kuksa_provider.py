@@ -31,7 +31,7 @@ config = load_config(CONFIG_PATH)
 
 # ---------------- CONFIG ----------------
 MQTT_BROKER = config.get("mqtt", {}).get("broker", os.getenv("MQTT_BROKER", "localhost"))
-MQTT_PORT = config.get("mqtt", {}).get("port", int(os.getenv("MQTT_PORT", 1883)))
+MQTT_PORT = config.get("mqtt", {}).get("port", int(os.getenv("MQTT_PORT", 1884)))
 MQTT_TOPICS_CARLA = config.get("mqtt", {}).get("topics", {}).get("carla", [])
 MQTT_TOPIC_COLOR = config.get("mqtt", {}).get("topics", {}).get("color", "compute/color")
 

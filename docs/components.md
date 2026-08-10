@@ -105,7 +105,7 @@ Configured directly in `mqtt_kuksa_provider.py`:
 | Parameter | Default | Description |
 | --- | --- | --- |
 | `MQTT_BROKER` | `localhost` | MQTT broker hostname |
-| `MQTT_PORT` | `1883` | MQTT broker port |
+| `MQTT_PORT` | `1884` | MQTT broker port |
 | `KUKSA_HOST` | `localhost` | Kuksa Databroker gRPC hostname |
 | `KUKSA_PORT` | `55555` | Kuksa Databroker gRPC port |
 
@@ -142,7 +142,7 @@ Configured directly in `carla_provider.py`:
 | `CARLA_HOST` | `192.168.43.249` | IP address of the Windows machine running CARLA |
 | `CARLA_PORT` | `2000` | CARLA server port |
 | `MQTT_BROKER` | `localhost` | MQTT broker hostname |
-| `MQTT_PORT` | `1883` | MQTT broker port |
+| `MQTT_PORT` | `1884` | MQTT broker port |
 
 ---
 

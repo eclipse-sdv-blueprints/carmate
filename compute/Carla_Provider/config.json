@@ -6,7 +6,7 @@
   },
   "mqtt": {
     "broker": "localhost",
-    "port": 1883,
+    "port": 1884,
     "topics": {
       "speed": "carla/vehicle/speed",
       "lat": "carla/vehicle/lat",
