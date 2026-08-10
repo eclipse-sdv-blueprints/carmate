@@ -28,7 +28,7 @@ echo "🔪 Killing leftover processes"
 sudo pkill -9 mosquitto
 sudo pkill -9 dnsmasq
 
-echo "🔍 Checking port 1883"
-sudo lsof -i :1883
+echo "🔍 Checking port 1884"
+sudo lsof -i :1884
 
 echo "✅ Done"

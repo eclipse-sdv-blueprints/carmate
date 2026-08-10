@@ -71,6 +71,22 @@
             margin-top: 15px;
         }
 
+        .testRow {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .testRow input {
+            flex: 1;
+            border-radius: 12px;
+            border: none;
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            outline: none;
+        }
+
         button {
             flex: 1;
             margin: 5px;
@@ -89,6 +105,14 @@
 
         #btnStop {
             background: linear-gradient(135deg, #ff4d4d, #c20000);
+            color: white;
+        }
+
+        #btnSend {
+            flex: 0;
+            min-width: 110px;
+            margin: 0;
+            background: linear-gradient(135deg, #26d07c, #14a35f);
             color: white;
         }
 
@@ -117,6 +141,12 @@
         <button id="btnStop" disabled>⛔ Stop</button>
     </div>
 
+    <div class="label">Type message (test mode)</div>
+    <div class="testRow">
+        <input id="textInput" type="text" placeholder="Type a question without microphone..." />
+        <button id="btnSend">Send</button>
+    </div>
+
     <div class="label">You said</div>
     <textarea id="sttResult" readonly></textarea>
 
@@ -138,10 +168,55 @@ let currentAudio = null;
 
 const btnStart = document.getElementById("btnStart");
 const btnStop = document.getElementById("btnStop");
+const btnSend = document.getElementById("btnSend");
+const textInput = document.getElementById("textInput");
 
 const sttStatus = document.getElementById("sttStatus");
 const sttResult = document.getElementById("sttResult");
 const aiResult = document.getElementById("aiResult");
+
+async function runAssistantFlow(transcript) {
+    sttResult.value = transcript;
+
+    if (!transcript) {
+        sttStatus.innerText = "No input provided";
+        return;
+    }
+
+    sttStatus.innerText = "Thinking...";
+
+    const rpcRes = await fetch("/rpc", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: transcript })
+    });
+
+    const rpcData = await rpcRes.json();
+    aiResult.value = rpcData.text || "";
+
+    sttStatus.innerText = "🔊 Speaking...";
+
+    const ttsRes = await fetch("/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: rpcData.text })
+    });
+
+    const audioBlob = await ttsRes.blob();
+    const audioUrl = URL.createObjectURL(audioBlob);
+
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+
+    currentAudio = new Audio(audioUrl);
+
+    currentAudio.onended = () => {
+        sttStatus.innerText = "Ready";
+    };
+
+    currentAudio.play();
+}
 
 btnStart.onclick = async () => {
     try {
@@ -209,53 +284,7 @@ btnStop.onclick = async () => {
 
         const data = await res.json();
         const transcript = data.text || "";
-
-        sttResult.value = transcript;
-
-        if (!transcript) {
-            sttStatus.innerText = "No speech detected";
-            return;
-        }
-
-        sttStatus.innerText = "Thinking...";
-
-        // -----------------------
-        // RPC (TEXT ONLY)
-        // -----------------------
-        const rpcRes = await fetch("/rpc", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: transcript })
-        });
-
-        const rpcData = await rpcRes.json();
-        aiResult.value = rpcData.text || "";
-
-        // -----------------------
-        // TTS (FIXED PART)
-        // -----------------------
-        sttStatus.innerText = "🔊 Speaking...";
-
-        const ttsRes = await fetch("/tts", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: rpcData.text })
-        });
-
-        const audioBlob = await ttsRes.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-
-        if (currentAudio) {
-            currentAudio.pause();
-        }
-
-        currentAudio = new Audio(audioUrl);
-
-        currentAudio.onended = () => {
-            sttStatus.innerText = "Ready";
-        };
-
-        currentAudio.play();
+        await runAssistantFlow(transcript);
 
     } catch (err) {
         console.error(err);
@@ -265,6 +294,31 @@ btnStop.onclick = async () => {
     btnStart.disabled = false;
     btnStop.disabled = true;
 };
+
+btnSend.onclick = async () => {
+    const typedText = (textInput.value || "").trim();
+    if (!typedText) {
+        sttStatus.innerText = "Enter text first";
+        return;
+    }
+
+    btnSend.disabled = true;
+    try {
+        await runAssistantFlow(typedText);
+    } catch (err) {
+        console.error(err);
+        sttStatus.innerText = "Error";
+    } finally {
+        btnSend.disabled = false;
+    }
+};
+
+textInput.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        btnSend.click();
+    }
+});
 </script>
 
 </body>

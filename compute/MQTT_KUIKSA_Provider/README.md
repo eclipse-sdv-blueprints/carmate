@@ -27,7 +27,7 @@ mqtt_kuksa_provider/
 
 This component relies on both an MQTT Broker and a KUKSA Databroker instance to operate:
 
-* **MQTT Broker Endpoint:** `localhost:1883`
+* **MQTT Broker Endpoint:** `localhost:1884`
 * **KUKSA.val Databroker Endpoint:** `localhost:55555`
 
 ---

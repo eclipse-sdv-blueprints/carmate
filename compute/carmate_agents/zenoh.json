@@ -1,7 +1,7 @@
 {
   "mode": "peer",
   "connect": {
-    "endpoints": ["tcp/zenoh:7447"]
+    "endpoints": ["tcp/127.0.0.1:7447"]
   },
   "scouting": {
     "multicast": {

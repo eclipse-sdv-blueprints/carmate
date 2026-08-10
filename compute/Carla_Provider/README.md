@@ -29,7 +29,7 @@ Carla_Provider/
 
 This component requires an **MQTT Broker** (e.g., Mosquitto) to publish its vehicle telemetry stream.
 
-* **MQTT Broker Endpoint:** `localhost:1883` (or overridden via `MQTT_BROKER` environment variable).
+* **MQTT Broker Endpoint:** `localhost:1884` (or overridden via `MQTT_BROKER` environment variable).
 * **CARLA Server (CARLA Mode):** Requires a running CARLA Simulator instance at the host/port configured in `config.json` (or `CARLA_HOST` / `CARLA_PORT` environment variables).
 
 ---
@@ -109,7 +109,7 @@ Connection parameters are defined in `config.json` and can be overridden with en
   },
   "mqtt": {
     "broker": "localhost",
-    "port": 1883,
+    "port": 1884,
     "topics": {
       "speed": "carla/vehicle/speed",
       "lat": "carla/vehicle/lat",
