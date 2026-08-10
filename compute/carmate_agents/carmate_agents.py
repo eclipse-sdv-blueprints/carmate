@@ -158,23 +158,14 @@ Always end with a light question or invitation to continue the conversation.
     model = MODEL_MAP.get(provider)
 
     if provider == "ollama":
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt},
-        ]
-        try:
-            response = ollama.chat(
-                model=model,
-                messages=messages,
-            )
-            return response["message"]["content"]
-        except Exception as e:
-            # Backward compatibility for Ollama builds without /api/chat.
-            if "404" in str(e) and "/api/chat" in str(e):
-                fallback_prompt = f"{system_prompt}\n\nUser: {prompt}\nAssistant:"
-                response = ollama.generate(model=model, prompt=fallback_prompt)
-                return response.get("response", "")
-            raise
+        response = ollama.chat(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        return response["message"]["content"]
 
     elif provider == "openai":
         client = OpenAI(api_key=API_KEYS["openai"])
