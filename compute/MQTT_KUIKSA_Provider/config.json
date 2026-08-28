@@ -1,0 +1,32 @@
+{
+  "mqtt": {
+    "broker": "localhost",
+    "port": 1884,
+    "topics": {
+      "carla": [
+        "carla/vehicle/speed",
+        "carla/vehicle/lat",
+        "carla/vehicle/lon",
+        "carla/vehicle/alt",
+        "carla/vehicle/wetness",
+        "mcu/temperature"
+      ],
+      "color": "compute/color"
+    }
+  },
+  "kuksa": {
+    "host": "localhost",
+    "port": 55555
+  },
+  "signals": {
+    "color": "Vehicle.Cabin.Light.AmbientLight.Row1.DriverSide.Color"
+  },
+  "mappings": {
+    "carla/vehicle/speed": "Vehicle.Speed",
+    "carla/vehicle/lat": "Vehicle.CurrentLocation.Latitude",
+    "carla/vehicle/lon": "Vehicle.CurrentLocation.Longitude",
+    "carla/vehicle/alt": "Vehicle.CurrentLocation.Altitude",
+    "carla/vehicle/wetness": "Vehicle.Exterior.Humidity",
+    "mcu/temperature": "Vehicle.Cabin.HVAC.AmbientAirTemperature"
+  }
+}

@@ -1,0 +1,3 @@
+[submodule "mcu_sw/threadx-rust"]
+	path = mcu_sw/threadx-rust
+	url = https://github.com/Eclipse-SDV-Hackathon-Chapter-Three/threadx-rust.git

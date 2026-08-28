@@ -1,0 +1,91 @@
+# /********************************************************************************
+# * Copyright (c) 2026 Contributors to the Eclipse Foundation
+# *
+# * See the NOTICE file(s) distributed with this work for additional
+# * information regarding copyright ownership.
+# *
+# * This program and the accompanying materials are made available under the
+# * terms of the Apache License 2.0 which is available at
+# * https://www.apache.org/licenses/LICENSE-2.0
+# *
+# * SPDX-License-Identifier: Apache-2.0
+# ********************************************************************************/
+
+
+services:
+    
+  sdv_runtime:
+    image: ghcr.io/eclipse-autowrx/sdv-runtime:main-63cb5c3
+    container_name: sdv_runtime
+    network_mode: host
+    environment:
+      RUNTIME_NAME: CarMate
+    restart: unless-stopped
+
+  mqtt:
+    image: eclipse-mosquitto:2.0
+    container_name: mqtt
+    depends_on:
+      - sdv_runtime
+    network_mode: host
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+    restart: unless-stopped
+
+  zenoh:
+    image: eclipse/zenoh:1.9.0-10-gfe7a78ebc
+    container_name: zenoh
+    network_mode: host
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+    ports:
+      - "7447:7447"
+      - "7446:7446/udp"
+
+  mqtt_provider:
+    build:
+      context: ./MQTT_KUIKSA_Provider
+    container_name: mqtt_provider
+    network_mode: host
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+    
+  carla_provider:
+    build:
+      context: ./Carla_Provider
+    container_name: carla-provider
+    network_mode: host
+    depends_on:
+      - mqtt
+    restart: unless-stopped  
+    
+  vehicle_data_accessor:
+    build:
+      context: ./Vehicle_data_accessor
+    container_name: vehicle_data_accessor
+    network_mode: host
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+    
+  carmate_agents:
+    build:
+      context: ./carmate_agents
+    env_file:
+      - .env
+    container_name: carmate_agents
+    network_mode: host
+    depends_on:
+      - mqtt
+    restart: unless-stopped
+    
+  carmate_io:
+    build:
+      context: ./car_mate_io
+    container_name: carmate_io
+    network_mode: host
+    depends_on:
+      - zenoh
+    restart: unless-stopped
