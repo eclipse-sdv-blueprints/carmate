@@ -265,6 +265,7 @@ btnStop.onclick = async () => {
     buffer.getChannelData(0).set(result);
 
     const wav = audioBufferToWav(buffer);
+    await audioContext.close();
     const blob = new Blob([wav], { type: "audio/wav" });
 
     const formData = new FormData();
