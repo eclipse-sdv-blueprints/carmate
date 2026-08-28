@@ -47,7 +47,7 @@ Run the accessor alongside its required dependencies using Docker Compose from t
 
 * **Run `Vehicle_data_accessor` stack:**
   ```bash
-  docker compose up Vehicle_data_accessor
+  docker compose up vehicle_data_accessor
   ```
 
 * **Run stack in detached mode:**
