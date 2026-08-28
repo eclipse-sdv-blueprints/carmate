@@ -14,7 +14,7 @@ title: Introduction
 | **SDV Projects Involved** | [Eclipse Kuksa](https://eclipse-kuksa.github.io/kuksa-website/), [Eclipse Zenoh](https://zenoh.io/), [Eclipse AutoWRX](https://github.com/eclipse-autowrx)                                                                        |
 | **Other Technologies**   | [CARLA Simulator](https://carla.org/), [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/), [Eclipse Mosquitto](https://mosquitto.org/), [Docker](https://www.docker.com/), [Ollama](https://ollama.com/)         |
 | **Target Hardware**      | Linux compute node (Docker host), Windows machine (CARLA simulator), Azure IoT Dev Kit / MCU node (optional)                                                                                                                        |
-| **Source Repository**    | [chheis/carmate](https://github.com/chheis/carmate)                                                                                                                                                                                 |
+| **Source Repository**    | [eclipse-sdv-blueprints/carmate](https://github.com/eclipse-sdv-blueprints/carmate)                                                                                                                                                 |
 | **Architecture Overview** | ![CarMate technical architecture](./img/tech_arch.png)                                                                                                                                                                             |
 
 ## Blueprint Purpose

@@ -16,7 +16,7 @@ plugins: [
     "docusaurus-plugin-remote-content",
     {
       name: "carmate",
-      sourceBaseUrl: "https://raw.githubusercontent.com/chheis/carmate/main/docs",
+      sourceBaseUrl: "https://raw.githubusercontent.com/eclipse-sdv-blueprints/carmate/main/docs",
       outDir: "docs/carmate",
       documents: [
         "introduction.md",
@@ -31,7 +31,7 @@ plugins: [
     "docusaurus-plugin-remote-content",
     {
       name: "carmate-img",
-      sourceBaseUrl: "https://raw.githubusercontent.com/chheis/carmate/main/docs/img",
+      sourceBaseUrl: "https://raw.githubusercontent.com/eclipse-sdv-blueprints/carmate/main/docs/img",
       outDir: "docs/carmate/img",
       documents: ["tech_arch.png"],
       requestConfig: { responseType: "arraybuffer" },

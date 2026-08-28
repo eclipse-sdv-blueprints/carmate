@@ -50,7 +50,7 @@ To run CarMate without a CARLA server or MCU hardware, use mock mode. The CARLA 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/chheis/carmate.git
+git clone https://github.com/eclipse-sdv-blueprints/carmate.git
 cd carmate
 
 # 2. (Optional) Configure your LLM backend — default is Ollama with phi3
