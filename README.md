@@ -15,7 +15,7 @@ CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Veh
 | **Other Technologies**   | [CARLA Simulator](https://carla.org/), [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/), [Eclipse Mosquitto](https://mosquitto.org/), [Docker](https://www.docker.com/), [Ollama](https://ollama.com/)         |
 | **Target Hardware**      | Linux compute node (Docker host), Windows machine (CARLA simulator), Azure IoT Dev Kit / MCU node (optional)                                                                                                                        |
 | **Source Repository**    | [eclipse-sdv-blueprints/carmate](https://github.com/eclipse-sdv-blueprints/carmate)                                                                                                                                                 |
-| **Architecture Overview** | ![CarMate technical architecture](img/tech_arch.png)                                                                                                                                                                               |
+| **Architecture Overview** | ![CarMate technical architecture](docs/img/tech_arch.png)                                                                                                                                                                          |
 
 CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures designed to enhance driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces. The [AIoT Lab at the Ferdinand-Steinbeis-Institut](https://ferdinand-steinbeis-institut.de/aiotlab/) actively manages and updates this blueprint, and we welcome all forms of cooperation—ranging from open-source contributions and research partnerships to industry integrations.
 
@@ -73,7 +73,7 @@ Example use cases include:
 
 ## Technical Architecture
 
-![CarMate technical architecture](img/tech_arch.png)
+![CarMate technical architecture](docs/img/tech_arch.png)
 
 The CarMate blueprint is organized across three connected nodes:
 

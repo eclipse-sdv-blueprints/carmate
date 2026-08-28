@@ -7,7 +7,7 @@ title: Architecture
 
 ## System Overview
 
-![CarMate technical architecture](./img/tech_arch.png)
+![CarMate technical architecture](docs/img/tech_arch.png)
 
 CarMate spans three connected nodes. Each node has a distinct role: hardware sensing, software-defined vehicle processing, and simulation/visualization.
 

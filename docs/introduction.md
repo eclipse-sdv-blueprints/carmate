@@ -15,7 +15,7 @@ title: Introduction
 | **Other Technologies**   | [CARLA Simulator](https://carla.org/), [COVESA VSS](https://covesa.github.io/vehicle_signal_specification/), [Eclipse Mosquitto](https://mosquitto.org/), [Docker](https://www.docker.com/), [Ollama](https://ollama.com/)         |
 | **Target Hardware**      | Linux compute node (Docker host), Windows machine (CARLA simulator), Azure IoT Dev Kit / MCU node (optional)                                                                                                                        |
 | **Source Repository**    | [eclipse-sdv-blueprints/carmate](https://github.com/eclipse-sdv-blueprints/carmate)                                                                                                                                                 |
-| **Architecture Overview** | ![CarMate technical architecture](./img/tech_arch.png)                                                                                                                                                                             |
+| **Architecture Overview** | ![CarMate technical architecture](docs/img/tech_arch.png)                                                                                                                                                                          |
 
 ## Blueprint Purpose
 
@@ -50,24 +50,24 @@ The diagram below shows how the core Eclipse SDV components interact within CarM
 
 ```mermaid
 graph LR
-    subgraph MCU Node
-        MCU[Azure IoT Dev Kit\nThreadX Firmware]
+    subgraph "MCU Node"
+        MCU["Azure IoT Dev Kit<br/>ThreadX Firmware"]
     end
 
-    subgraph HPC Node
-        CARLA[CARLA Simulator\nInstrument App]
+    subgraph "HPC Node"
+        CARLA["CARLA Simulator<br/>Instrument App"]
     end
 
-    subgraph Compute Node
-        MQTT[Eclipse Mosquitto\nMQTT Broker]
-        ZENOH[Eclipse Zenoh\nRouter]
-        KUKS[Eclipse Kuksa\nDatabroker]
-        PROV[MQTT-Kuksa Provider]
-        CARPROV[CARLA-Kuksa Provider]
-        VDA[Vehicle Data Accessor]
-        AGENT[CarMate Agent\nLLM / uProtocol]
+    subgraph "Compute Node"
+        MQTT["Eclipse Mosquitto<br/>MQTT Broker"]
+        ZENOH["Eclipse Zenoh<br/>Router"]
+        KUKS["Eclipse Kuksa<br/>Databroker"]
+        PROV["MQTT-Kuksa Provider"]
+        CARPROV["CARLA-Kuksa Provider"]
+        VDA["Vehicle Data Accessor"]
+        AGENT["CarMate Agent<br/>LLM / uProtocol"]
         IO[CarMate I/O\nSTT · TTS · Web UI]
-        AUTOWR[Eclipse AutoWRX\nSDV Runtime]
+        AUTOWR["Eclipse AutoWRX<br/>SDV Runtime"]
     end
 
     MCU -- Wi-Fi MQTT --> MQTT
