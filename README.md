@@ -17,7 +17,7 @@ CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Veh
 | **Source Repository**    | [eclipse-sdv-blueprints/carmate](https://github.com/eclipse-sdv-blueprints/carmate)                                                                                                                                                 |
 | **Architecture Overview** | ![CarMate technical architecture](docs/img/tech_arch.png)                                                                                                                                                                          |
 
-CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures designed to enhance driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces. The [AIoT Lab at the Ferdinand-Steinbeis-Institut](https://ferdinand-steinbeis-institut.de/aiotlab/) actively manages and updates this blueprint, and we welcome all forms of cooperation—ranging from open-source contributions and research partnerships to industry integrations.
+CarMate is an AI-powered in-vehicle companion blueprint for Software Defined Vehicle (SDV) architectures designed to enhance driver well-being, safety, and interaction by combining real-time vehicle data, conversational AI, and safe human-machine interfaces. The [AIoT Lab at the Ferdinand-Steinbeis-Institut](https://ferdinand-steinbeis-institut.de/) actively manages and updates this blueprint, and we welcome all forms of cooperation—ranging from open-source contributions and research partnerships to industry integrations.
 
 ## Attribution & Evolution
 
@@ -27,7 +27,7 @@ CarMate is built upon and evolved from the original hackathon project **[ArBytes
 * **Initial Hardware & Simulation Pipeline:** The end-to-end telemetry architecture connecting MCU sensor hardware, CARLA simulator environments, and Kuksa-based VSS signal processing.
 * **Core Agent Interaction Flow:** The basic architecture for integrating Speech-to-Text (STT), Text-to-Speech (TTS), and LLM-driven conversational logic with vehicle signal loops.
 
-Building upon that foundational work, the **[AIoT Lab](https://ferdinand-steinbeis-institut.de/aiotlab/)** has introduced the following major updates and architectural changes:
+Building upon that foundational work, the **[AIoT Lab](https://ferdinand-steinbeis-institut.de/)** has introduced the following major updates and architectural changes:
 
 * **Containerization Shift:** Migrated container orchestration and deployment from Podman to **Docker**.
 * **Language Migration:** Rebuilt the core codebase transition from Rust to **Python** for improved extensibility and ecosystem integration.
